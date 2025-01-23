@@ -46,7 +46,7 @@
                 >
               </div>
               <div>
-                <textarea type="text" id="time" name="time" required></textarea>
+                <textarea placeholder="30 minutes, 2 hours, 1 week, etc" type="text" id="time" name="time" required></textarea>
               </div>
               <div>
                 <button type="button" class="next">Next</button></div>
@@ -60,6 +60,7 @@
               </div>
               <div>
                 <textarea
+                 placeholder="Kindergarten, 9th grade, Ages 15-17, etc"
                   type="text"
                   id="ageGroup"
                   name="ageGroup"
@@ -142,7 +143,13 @@
       
       </div>
       <div id="loader" class="hidden">
+        <div>
         <em>Generating lesson plan, please wait...</em>
+      </div>
+        <div>
+        <progress id="progressBar" value="10" max="100"></progress>
+        <span id="progressText">0%</span>
+      </div>
       </div>
       
       </div>

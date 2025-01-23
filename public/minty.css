@@ -115,6 +115,7 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .results-container {
@@ -144,6 +145,7 @@ textarea {
   height: 40px;
   border-radius: 50%;
 }
+
 
 .spacer {
   width: 5px;

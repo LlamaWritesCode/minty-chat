@@ -9,7 +9,7 @@ fetch('/api-key')
   .catch((error) => console.error('Error:', error));
 
 async function generateLessonPlan(inputs) {
-  const prompt = `Create a hands-on lesson plan similar to the sample response format. It does not have to be exact and make it concise and short and generate fast. Details:
+  const prompt = `Create a hands-on lesson plan similar to the sample response format. It does not have to be exact and make it concise and short for faster loading time. Details:
   - Time: ${inputs.time}
   - Age group: ${inputs.ageGroup}
   - Environment: ${inputs.environment}
@@ -44,7 +44,6 @@ sample response for lesson plan:
 <p><strong><span style="font-size:16pt;font-family:Poppins,sans-serif;">What&rsquo;s the big idea?&nbsp;</span></strong></p>
 <p><span style="font-size:13.5pt;font-family:Poppins,sans-serif;">Learners in grades K and up can design and build a wind-up flying machine using stored potential and released kinetic energy. &nbsp; This project takes a minimum of 10 minutes, if at an event activity station, 30 minutes in a single classroom session, or up to 60 minutes if you use our recommended extensions. &nbsp;Please refer to the full guide for details.</span></p>
 <p><br></p>
-<p><span style="border:none;"><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcYEiZ8-Idd3N4M0HZiUNminmjtNMYgnngeDxiGVSAAxIJIlL7VIAkZg87xYFZYL1QN6d1Cfi6gp32mXpqU3SeRcGId-HPReMZdSp1VMhIyfav04eBEqnbevyW5YJQhUgTGqwPI7blNQN3Q9ojxHjO29iVy?key=niV26Un1e8cYMRtW-XnTxw" width="293" height="220"></span><strong><span style="font-size:16pt;font-family:Poppins,sans-serif;"><br></span></strong></p>
 <p><strong><span style="font-size:16pt;font-family:Poppins,sans-serif;">What&rsquo;s in the kit?</span></strong></p>
 <ul>
     <li style="list-style-type:disc;font-size:13pt;font-family:Poppins,sans-serif;">
@@ -286,7 +285,7 @@ sample response for lesson plan:
 
 async function generateAssessment(inputs) {
   const prompt = `Create an assessment for learners of age ${inputs.ageGroup} in a ${inputs.environment} environment.
-  Follow the sample response format.
+  Follow the sample response format. make it short and concise for faster loading times.
   sample response for assessment:
 
 <h1><span style="font-size:20pt;font-family:Arial,sans-serif;">Sample Assessment: Grade-Level Exit Tickets for Flying Machines Spark</span></h1>
@@ -482,10 +481,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentQuestionIndex = 0;
 
 
-  // Show the first question
   questions[currentQuestionIndex].classList.add("active");
-
-  // Add event listeners to "Next" buttons
   document.querySelectorAll(".next").forEach((button, index) => {
     button.addEventListener("click", () => {
       const input = questions[index].querySelector("textarea, select");
@@ -500,7 +496,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Add event listeners to "Back" buttons
   document.querySelectorAll(".back").forEach((button, index) => {
     button.addEventListener("click", () => {
       questions[index].classList.remove("active");
@@ -509,12 +504,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Handle form submission
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     document.getElementById('educatorForm').classList.add('hidden');
     document.getElementById('loader').classList.remove('hidden');
     document.getElementById('loader').classList.add('loaderContainer');
+
 
     const responses = {
       time: document.getElementById("time").value,
@@ -523,9 +518,19 @@ document.addEventListener("DOMContentLoaded", () => {
       confidence: document.getElementById("confidence").value,
       assessment: document.getElementById("assessment").value,
     };
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
 
+    updateProgressBar(20, progressBar, progressText);
+
+
+    updateProgressBar(30, progressBar, progressText);
     const lessonPlan = await generateLessonPlan(responses);
+
+    updateProgressBar(70, progressBar, progressText);
     const assessment = responses.assessment === 'Yes' ? await generateAssessment(responses) : 'No assessment needed.';
+  
+    updateProgressBar(100, progressBar, "Complete!");
     document.getElementById('formContainer').classList.remove('container');
     document.getElementById('formContainer1').classList.add('hidden');
     document.getElementById('formContainer').classList.add('hidden');
@@ -539,4 +544,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('educatorForm').classList.remove('hidden');
   });
 });
+
+function updateProgressBar(percent, progressBar, text ) {
+  progressBar.value = percent;
+  text.innerHTML = `${percent} %`;
+}
 
