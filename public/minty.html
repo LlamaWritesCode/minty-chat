@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Educator Interview Assistant</title>
+    <link rel="stylesheet" href="minty.css" />
+  </head>
+
+  <body>
+    <div id="formContainer" class="container">
+
+      <div class="backImage"></div>
+
+
+      <div id="formContainer1" class="form-container-1">
+       
+        <div>
+          <div class="logo-container">
+            <span><img class="logo" src="./mint.png"/></span>
+            <span class="spacer"></span>
+        <h1>Minty</h1>
+      </div>
+        <h2>Educator Interview Assistant</h2>
+      </div>
+
+        <div id="start" class="start-container">
+          <div id="startLabel">
+          <em>
+            This tool will help you create a lesson plan based on your responses
+            to the following questions.
+          </em>
+        </div>
+        <div class="start-button-container">
+          <button id="startButton">Start</button>
+        </div>
+        </div>
+
+        <div>
+        <form id="educatorForm" class="hidden">
+          <div class="questions-container">
+            <div class="question active">
+              <div>
+                <label for="time"
+                  >How much time do you have for this activity?</label
+                >
+              </div>
+              <div>
+                <textarea type="text" id="time" name="time" required></textarea>
+              </div>
+              <div>
+                <button type="button" class="next">Next</button></div>
+            </div>
+
+            <div class="question">
+              <div class="label-text">
+                <label for="ageGroup"
+                  >What grade(s) or age group(s) are your learners?</label
+                >
+              </div>
+              <div>
+                <textarea
+                  type="text"
+                  id="ageGroup"
+                  name="ageGroup"
+                  required
+                ></textarea>
+                <button type="button" class="next">Next</button>
+              </div>
+            </div>
+
+            <div class="question">
+              <div class="label-text">
+                <label for="environment"
+                  >What is the learning environment?</label
+                >
+              </div>
+              <div>
+                <textarea
+                  type="text"
+                  id="environment"
+                  name="environment"
+                  required
+                ></textarea>
+                <button type="button" class="next">Next</button>
+              </div>
+            </div>
+
+            <div class="question">
+              <div class="label-text">
+                <label for="confidence"
+                  >How confident are you in using hands-on projects?</label
+                >
+              </div>
+              <div>
+                <textarea
+                  type="text"
+                  id="confidence"
+                  name="confidence"
+                  required
+                ></textarea>
+                <button type="button" class="next">Next</button>
+              </div>
+            </div>
+
+            <div class="question">
+              <div class="label-text">
+                <label for="assessment"
+                  >Do you want to include an assessment?</label
+                >
+              </div>
+              <div class="selection-container">
+                <select
+                  id="assessment"
+                  name="assessment"
+                  class="selection"
+                  required
+                >
+                <option value="Please Select">Please Select</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>  
+              <div>
+                <button class="submitBtn" type="submit">Submit</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      
+      </div>
+      <div id="loader" class="hidden">
+        <em>Generating lesson plan, please wait...</em>
+      </div>
+      
+      </div>
+
+    </div>
+
+    <div id="results" class="hidden">
+      <h2>Results</h2>
+      <div id="educatorResponses"></div>
+      <div id="lessonPlan"></div>
+      <div id="assessment"></div>
+    </div>
+
+
+
+    <script src="./minty.js"></script>
+  </body>
+</html>
