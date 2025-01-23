@@ -75,15 +75,21 @@
                   >What is the learning environment?</label
                 >
               </div>
-              <div>
-                <textarea
-                  type="text"
-                  id="environment"
-                  name="environment"
-                  required
-                ></textarea>
-                <button type="button" class="next">Next</button>
+              <div class="selection-container">
+                <select
+                id="environment"
+                name="environment"
+                class="selection"
+                required
+              >
+              <option value="Please Select">Please Select</option>
+                <option value="Virtual">Virtual</option>
+                <option value="In-Person">In-Person</option>
+                <option value="Hybrid">Hybrid</option>
+              </select>
               </div>
+              <button type="button" class="next">Next</button>
+
             </div>
 
             <div class="question">
@@ -92,15 +98,23 @@
                   >How confident are you in using hands-on projects?</label
                 >
               </div>
-              <div>
-                <textarea
-                  type="text"
-                  id="confidence"
+              <div class="selection-container">
+                <select
+                id="confidence"
                   name="confidence"
-                  required
-                ></textarea>
-                <button type="button" class="next">Next</button>
+                class="selection"
+                required
+              >
+              <option value="Please Select">Please Select</option>
+                <option value="Very Confident">Very Confident</option>
+                <option value="Confident">Confident</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Slightly Confident">Slightly Confident</option>
+                <option value="Not Confident">Not Confident</option>
+              </select>
               </div>
+              <button type="button" class="next">Next</button>
+
             </div>
 
             <div class="question">
@@ -121,9 +135,7 @@
                   <option value="No">No</option>
                 </select>
               </div>  
-              <div>
                 <button class="submitBtn" type="submit">Submit</button>
-              </div>
             </div>
           </div>
         </form>
